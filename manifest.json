@@ -1,6 +1,157 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-17T12:47:02.232Z",
-  "services": [],
-  "skills": []
+  "updatedAt": "2026-02-17T13:33:18.431Z",
+  "services": [
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "tags": [
+        "search",
+        "web",
+        "api"
+      ],
+      "definition": {
+        "id": "brave-search",
+        "name": "Brave Search",
+        "description": "Private web search using Brave's API.",
+        "apiUrl": "https://api.search.brave.com/res/v1/web/search",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json",
+          "X-Subscription-Token": "<API_KEY>"
+        },
+        "toolDefinition": "{\"name\": \"searchWeb\", \"description\": \"Search the web for a given query\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" }, \"count\": { \"type\": \"integer\", \"description\": \"Number of results (1-20)\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+          "web",
+          "results",
+          "title",
+          "url",
+          "description"
+        ],
+        "apiKeyUrl": "https://brave.com/search/api/",
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "tags": [
+        "news",
+        "tech",
+        "api"
+      ],
+      "definition": {
+        "id": "hacker-news-v1",
+        "name": "Hacker News",
+        "description": "Get the latest top stories from Hacker News (via HNPWA API for better JSON structure).",
+        "apiUrl": "https://api.hnpwa.com/v0/news/1.json",
+        "method": "GET",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"getTopStories\", \"description\": \"Get top stories from Hacker News\", \"parameters\": { \"type\": \"object\", \"properties\": { }, \"required\": [] } }",
+        "responseKeys": [
+          "id",
+          "title",
+          "url",
+          "points",
+          "user",
+          "time_ago"
+        ],
+        "apiKeyUrl": null,
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "tags": [
+        "movies",
+        "database"
+      ],
+      "definition": {
+        "id": "omdb-movies",
+        "name": "OMDb Movies",
+        "description": "Search for movie information.",
+        "apiUrl": "http://www.omdbapi.com/?apikey=<API_KEY>",
+        "method": "GET",
+        "headers": {},
+        "toolDefinition": "{\"name\": \"searchMovie\", \"description\": \"Search for a movie title\", \"parameters\": { \"type\": \"object\", \"properties\": { \"t\": { \"type\": \"string\", \"description\": \"Movie title\" }, \"y\": { \"type\": \"string\", \"description\": \"Year of release (optional)\" } }, \"required\": [\"t\"] } }",
+        "responseKeys": [
+          "Title",
+          "Year",
+          "Plot",
+          "imdbRating",
+          "Poster"
+        ],
+        "apiKeyUrl": "http://www.omdbapi.com/apikey.aspx",
+        "isEnabled": true
+      }
+    }
+  ],
+  "skills": [
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "description": "Get a summary of the most important news today.",
+      "tags": [
+        "news",
+        "daily"
+      ],
+      "definition": {
+        "id": "daily-news-briefing",
+        "name": "Daily News Briefing",
+        "icon": "globe.americas.fill",
+        "colorHex": "007AFF",
+        "prompt": "Use the `searchWeb` tool to find the top news headlines for today. Summarize the 5 most important stories into a concise briefing.",
+        "requiredServices": [
+          "brave-search"
+        ],
+        "isEnabled": true,
+        "isBuiltIn": false
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "description": "Find details about a specific movie.",
+      "tags": [
+        "movies",
+        "entertainment"
+      ],
+      "definition": {
+        "id": "movie-night-scout",
+        "name": "Movie Night Scout",
+        "icon": "popcorn.fill",
+        "colorHex": "5856D6",
+        "prompt": "Search OMDb for the movie 'Dune'. If found, provide the plot summary, IMDB rating, and release year. Then tell me if it's considered a good sci-fi movie.",
+        "requiredServices": [
+          "omdb-movies"
+        ],
+        "isEnabled": true,
+        "isBuiltIn": false
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "description": "Get a summary of the latest top tech stories.",
+      "tags": [
+        "news",
+        "tech"
+      ],
+      "definition": {
+        "id": "tech-briefing",
+        "name": "Tech Briefing",
+        "icon": "newspaper.fill",
+        "colorHex": "FF3B30",
+        "prompt": "Get the top stories from Hacker News using the `getTopStories` tool. Summarize the top 5 with a catchy headline and a 1-sentence description for each.",
+        "requiredServices": [
+          "hacker-news-v1"
+        ],
+        "isEnabled": true,
+        "isBuiltIn": false
+      }
+    }
+  ]
 }
