@@ -43,6 +43,9 @@ We welcome contributions! You can add new services or skills by submitting a Pul
     - See [Skill Schema](#skill-schema) below.
 4.  Submit a Pull Request.
 
+> [!NOTE]
+> This repository uses **Branch Protection**. All Pull Requests require at least **one approval** from a maintainer and must pass automated checks before merging. See [Branch Protection Config](docs/BRANCH_PROTECTION.md) for details.
+
 ## 📜 JSON Schemas
 
 ### Service Schema (`service.json`)
