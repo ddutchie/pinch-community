@@ -1,0 +1,30 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "tags": [
+        "news",
+        "tech",
+        "api"
+    ],
+    "definition": {
+        "id": "hacker-news-v1",
+        "name": "Hacker News",
+        "description": "Get the latest top stories from Hacker News (via HNPWA API for better JSON structure).",
+        "apiUrl": "https://api.hnpwa.com/v0/news/1.json",
+        "method": "GET",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"getTopStories\", \"description\": \"Get top stories from Hacker News\", \"parameters\": { \"type\": \"object\", \"properties\": { }, \"required\": [] } }",
+        "responseKeys": [
+            "id",
+            "title",
+            "url",
+            "points",
+            "user",
+            "time_ago"
+        ],
+        "apiKeyUrl": null,
+        "isEnabled": true
+    }
+}
