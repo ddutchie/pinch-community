@@ -47,24 +47,58 @@ We welcome contributions! You can add new services or skills by submitting a Pul
 
 ### Service Schema (`service.json`)
 
+**Handling Secrets (API Keys):**
+Do **NOT** include actual API keys in the `service.json`. Instead, use placeholders like `<API_KEY>`, `<ACCESS_TOKEN>`, or `YOUR_API_KEY`. The Pinch app automatically detects these specific patterns in URL parameters or Headers and will prompt the user to enter their own key during installation or setup.
+
+**Example with API Key Placeholder:**
 ```json
 {
   "author": "github_username",
   "version": "1.0.0",
   "tags": ["news", "tech", "api"],
   "definition": {
-    "id": "unique-service-id",
-    "name": "Service Name",
-    "description": "Description of the service.",
-    "apiUrl": "https://api.example.com/v1/endpoint",
+    "id": "hacker-news-v1",
+    "name": "Hacker News",
+    "description": "Get the latest top stories from Hacker News.",
+    "apiUrl": "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty",
     "method": "GET",
     "headers": {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": "Bearer <API_KEY>"
     },
-    "toolDefinition": "{\"name\": \"toolName\", ...}",
-    "responseKeys": ["key1", "key2"],
-    "apiKeyUrl": null,
+    "toolDefinition": "{\"name\": \"getTopStories\", \"description\": \"Get IDs of the top 500 stories on Hacker News\", \"parameters\": { \"type\": \"object\", \"properties\": { \"limit\": { \"type\": \"integer\", \"description\": \"Number of stories to return\" } }, \"required\": [\"limit\"] } }",
+    "responseKeys": ["id", "title", "url"],
+    "apiKeyUrl": "https://api.hackernews.com/keys",
     "isEnabled": true
+  }
+}
+```
+
+#### Tool Definition Detail
+The `toolDefinition` field in the JSON above must be a **stringified JSON object**. This can be hard to read and write manually.
+
+**Recommended Workflow:**
+1. Design your Tool JSON in a standard editor (like below).
+2. Minify and escape it into a string (e.g., using an online JSON stringify tool or simple script).
+
+**Original Tool JSON Structure:**
+```json
+{
+  "name": "getWeather",
+  "description": "Get the current weather for a location",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "location": {
+        "type": "string",
+        "description": "City and state, e.g. San Francisco, CA"
+      },
+      "unit": {
+        "type": "string",
+        "enum": ["celsius", "fahrenheit"]
+      }
+    },
+    "required": ["location"]
   }
 }
 ```
@@ -75,17 +109,58 @@ We welcome contributions! You can add new services or skills by submitting a Pul
 {
   "author": "github_username",
   "version": "1.0.0",
-  "description": "Description of what this skill does.",
-  "tags": ["tag1", "tag2"],
+  "description": "Start your day with a clear view of what lies ahead.",
+  "tags": ["morning", "productivity"],
   "definition": {
-    "id": "unique-skill-id",
-    "name": "Skill Name",
-    "icon": "star.fill",
+    "id": "morning-briefing-v1",
+    "name": "Morning Briefing",
+    "icon": "sun.max.fill",
     "colorHex": "FF9500",
-    "prompt": "The prompt text...",
-    "requiredServices": ["service-id-1", "service-id-2"],
+    "prompt": "Summarize my calendar and reminders...",
+    "requiredServices": ["calendar", "reminders"],
     "isEnabled": true,
     "isBuiltIn": false
   }
 }
 ```
+
+### Available Icons (`icon` field)
+The `icon` field in `skill.json` supports any **SF Symbol** name. Here are some popular examples you can use:
+
+| Category | Icon Names |
+| :--- | :--- |
+| **Weather** | `sun.max.fill`, `cloud.fill`, `rain.fill`, `snow`, `moon.stars.fill`, `wind` |
+| **Nature** | `leaf.fill`, `flame.fill`, `drop.fill`, `bolt.fill`, `hare.fill`, `tortoise.fill` |
+| **Objects** | `lightbulb.fill`, `book.fill`, `cart.fill`, `gift.fill`, `creditcard.fill`, `wrench.and.screwdriver.fill` |
+| **Communication** | `bubble.left.fill`, `envelope.fill`, `phone.fill`, `video.fill`, `mic.fill` |
+| **UI & Actions** | `star.fill`, `heart.fill`, `bell.fill`, `tag.fill`, `flag.fill`, `bookmark.fill` |
+
+*Tip: You can browse the full list of symbols using the [SF Symbols app](https://developer.apple.com/sf-symbols/) from Apple.*
+
+## 🛠 Developer Technical Insight: How it Works
+
+For developers interested in how Pinch executes these services, here is the flow:
+
+### Service Execution
+When the AI decides to call a tool (e.g., `getTopStories`):
+
+1.  **Tool Matching**: The app checks if the tool name matches any installed Custom Service.
+2.  **Request Construction**:
+    *   It uses the `apiUrl` and `method` from your JSON definition.
+    *   It injects any `headers` defined (including your API keys).
+3.  **Argument Mapping**:
+    *   **GET Requests**: The tool arguments are automatically converted to **URL Query Parameters**.
+        *   *Example*: `getTopStories(limit: 5)` -> `.../topstories.json?limit=5`
+    *   **POST/PUT Requests**: The tool arguments are sent as a **JSON Body**.
+        *   *Example*: `createNote(text: "Hello")` -> Body: `{"text": "Hello"}`
+4.  **Response Handling**:
+    *   The app receives the raw JSON response from the API.
+    *   If `responseKeys` are defined in your service, the app filters the JSON to only include those fields (reducing token usage).
+    *   The final JSON is returned to the AI to interpret and summarize for the user.
+
+### Skill Execution
+A "Skill" is essentially a pre-packaged prompt template.
+
+1.  **Installation**: When a user installs a skill, it is saved to their local `SkillsService`.
+2.  **Invocation**: When the user taps the skill, the app sends the `prompt` string to the AI Agent.
+3.  **Context**: The app automatically attaches context from the `requiredServices`. For example, if your skill requires `calendar`, the app will give the AI permission to read the user's calendar events to answer the prompt.
