@@ -1,0 +1,26 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "tags": [
+        "movies",
+        "database"
+    ],
+    "definition": {
+        "id": "omdb-movies",
+        "name": "OMDb Movies",
+        "description": "Search for movie information.",
+        "apiUrl": "http://www.omdbapi.com/?apikey=<API_KEY>",
+        "method": "GET",
+        "headers": {},
+        "toolDefinition": "{\"name\": \"searchMovie\", \"description\": \"Search for a movie title\", \"parameters\": { \"type\": \"object\", \"properties\": { \"t\": { \"type\": \"string\", \"description\": \"Movie title\" }, \"y\": { \"type\": \"string\", \"description\": \"Year of release (optional)\" } }, \"required\": [\"t\"] } }",
+        "responseKeys": [
+            "Title",
+            "Year",
+            "Plot",
+            "imdbRating",
+            "Poster"
+        ],
+        "apiKeyUrl": "http://www.omdbapi.com/apikey.aspx",
+        "isEnabled": true
+    }
+}
