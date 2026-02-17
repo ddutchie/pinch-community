@@ -1,7 +1,7 @@
 # Pinch Community Repository
 
 <p align="center">
-  <img src="images/icon.png" alt="Pinch Icon" width="120" />
+  <img src="images/claw.png" alt="Pinch Icon" width="120" />
 </p>
 
 Welcome to the **Pinch Community Repository**! This is the central hub for users to share and discover custom **Services** and **Skills** for the Pinch app.
