@@ -44,7 +44,7 @@ We welcome contributions! You can add new services or skills by submitting a Pul
 4.  Submit a Pull Request.
 
 > [!NOTE]
-> This repository uses **Branch Protection**. All Pull Requests require at least **one approval** from a maintainer and must pass automated checks before merging. See [Branch Protection Config](docs/BRANCH_PROTECTION.md) for details.
+> This repository uses **Branch Protection**. All Pull Requests require at least **one approval** from a maintainer and must pass automated checks (such as CI status checks) before merging into protected branches (for example, `main`).
 
 ## 📜 JSON Schemas
 
