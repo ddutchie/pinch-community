@@ -1,0 +1,21 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "description": "Get a summary of the latest top tech stories.",
+    "tags": [
+        "news",
+        "tech"
+    ],
+    "definition": {
+        "id": "tech-briefing",
+        "name": "Tech Briefing",
+        "icon": "newspaper.fill",
+        "colorHex": "FF3B30",
+        "prompt": "Get the top stories from Hacker News using the `getTopStories` tool. Summarize the top 5 with a catchy headline and a 1-sentence description for each.",
+        "requiredServices": [
+            "hacker-news-v1"
+        ],
+        "isEnabled": true,
+        "isBuiltIn": false
+    }
+}

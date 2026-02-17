@@ -1,0 +1,21 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "description": "Get a summary of the most important news today.",
+    "tags": [
+        "news",
+        "daily"
+    ],
+    "definition": {
+        "id": "daily-news-briefing",
+        "name": "Daily News Briefing",
+        "icon": "globe.americas.fill",
+        "colorHex": "007AFF",
+        "prompt": "Use the `searchWeb` tool to find the top news headlines for today. Summarize the 5 most important stories into a concise briefing.",
+        "requiredServices": [
+            "brave-search"
+        ],
+        "isEnabled": true,
+        "isBuiltIn": false
+    }
+}

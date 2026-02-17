@@ -1,0 +1,21 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "description": "Find details about a specific movie.",
+    "tags": [
+        "movies",
+        "entertainment"
+    ],
+    "definition": {
+        "id": "movie-night-scout",
+        "name": "Movie Night Scout",
+        "icon": "popcorn.fill",
+        "colorHex": "5856D6",
+        "prompt": "Search OMDb for the movie 'Dune'. If found, provide the plot summary, IMDB rating, and release year. Then tell me if it's considered a good sci-fi movie.",
+        "requiredServices": [
+            "omdb-movies"
+        ],
+        "isEnabled": true,
+        "isBuiltIn": false
+    }
+}

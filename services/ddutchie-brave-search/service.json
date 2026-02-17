@@ -1,0 +1,30 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "tags": [
+        "search",
+        "web",
+        "api"
+    ],
+    "definition": {
+        "id": "brave-search",
+        "name": "Brave Search",
+        "description": "Private web search using Brave's API.",
+        "apiUrl": "https://api.search.brave.com/res/v1/web/search",
+        "method": "GET",
+        "headers": {
+            "Accept": "application/json",
+            "X-Subscription-Token": "<API_KEY>"
+        },
+        "toolDefinition": "{\"name\": \"searchWeb\", \"description\": \"Search the web for a given query\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" }, \"count\": { \"type\": \"integer\", \"description\": \"Number of results (1-20)\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+            "web",
+            "results",
+            "title",
+            "url",
+            "description"
+        ],
+        "apiKeyUrl": "https://brave.com/search/api/",
+        "isEnabled": true
+    }
+}
