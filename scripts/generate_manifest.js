@@ -3,6 +3,7 @@ const path = require('path');
 
 const SERVICES_DIR = path.join(__dirname, '../services');
 const SKILLS_DIR = path.join(__dirname, '../skills');
+const MCP_SERVERS_DIR = path.join(__dirname, '../mcp_servers');
 const MANIFEST_FILE = path.join(__dirname, '../manifest.json');
 
 function getDirectories(source) {
@@ -26,6 +27,7 @@ function readJsonFile(filePath) {
 function generateManifest() {
     const services = [];
     const skills = [];
+    const mcpServers = [];
 
     // Process Services
     const serviceDirs = getDirectories(SERVICES_DIR);
@@ -39,10 +41,6 @@ function generateManifest() {
                 console.warn(`Skipping invalid service in ${dir}: Missing required fields.`);
                 return;
             }
-            // Ensure folder name matches {author}-{id}? Not strictly enforcing here, but good practice.
-
-            // Add metadata if needed, e.g., the directory name as the ID source of truth?
-            // adhering to the schema provided
             services.push(serviceData);
         }
     });
@@ -63,15 +61,39 @@ function generateManifest() {
         }
     });
 
+    // Process MCP Servers
+    if (fs.existsSync(MCP_SERVERS_DIR)) {
+        const mcpDirs = getDirectories(MCP_SERVERS_DIR);
+        mcpDirs.forEach(dir => {
+            const mcpPath = path.join(MCP_SERVERS_DIR, dir, 'mcp.json');
+            const mcpData = readJsonFile(mcpPath);
+
+            if (mcpData) {
+                // Basic Validation
+                if (!mcpData.author || !mcpData.definition || !mcpData.definition.id) {
+                    console.warn(`Skipping invalid MCP server in ${dir}: Missing required fields.`);
+                    return;
+                }
+
+                // Cleanup: ensure redundant fields are handled or removed if present in source
+                if (mcpData.definition.isCommunity !== undefined) delete mcpData.definition.isCommunity;
+                if (mcpData.id !== undefined) delete mcpData.id;
+
+                mcpServers.push(mcpData);
+            }
+        });
+    }
+
     const manifest = {
         version: 1,
         updatedAt: new Date().toISOString(),
         services: services,
-        skills: skills
+        skills: skills,
+        mcpServers: mcpServers
     };
 
     fs.writeFileSync(MANIFEST_FILE, JSON.stringify(manifest, null, 2));
-    console.log(`Manifest generated with ${services.length} services and ${skills.length} skills.`);
+    console.log(`Manifest generated with ${services.length} services, ${skills.length} skills, and ${mcpServers.length} MCP servers.`);
 }
 
 generateManifest();

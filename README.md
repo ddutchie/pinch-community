@@ -140,6 +140,30 @@ The `icon` field in `skill.json` supports any **SF Symbol** name. Here are some 
 
 *Tip: You can browse the full list of symbols using the [SF Symbols app](https://developer.apple.com/sf-symbols/) from Apple.*
 
+
+### MCP Server Schema (`mcp.json`)
+
+**Handling Secrets:**
+Just like services, use placeholders like `<API_KEY>` in your headers. Pinch will prompt the user to replace them during setup.
+
+**Example Configuration:**
+```json
+{
+  "author": "github_username",
+  "version": "1.0.0",
+  "tags": ["weather", "tools"],
+  "definition": {
+    "id": "weather-mcp-v1",
+    "name": "Weather MCP",
+    "baseUrl": "https://mcp.weather-api.com/sse",
+    "isEnabled": true,
+    "headers": {
+      "Authorization": "Bearer <API_KEY>"
+    }
+  }
+}
+```
+
 ## 🛠 Developer Technical Insight: How it Works
 
 For developers interested in how Pinch executes these services, here is the flow:
