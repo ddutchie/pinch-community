@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-17T13:33:30.277Z",
+  "updatedAt": "2026-02-19T21:04:55.301Z",
   "services": [
     {
       "author": "ddutchie",
@@ -151,6 +151,41 @@
         ],
         "isEnabled": true,
         "isBuiltIn": false
+      }
+    }
+  ],
+  "mcpServers": [
+    {
+      "author": "ddutchie",
+      "definition": {
+        "id": "fetch",
+        "name": "Fetch",
+        "description": "Fetches web content and converts to markdown.",
+        "baseUrl": "https://mcp-fetch-secure.fly.dev/sse",
+        "headers": {
+          "Authorization": "Bearer <API_KEY>"
+        },
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "definition": {
+        "id": "sequential-thinking",
+        "name": "Sequential Thinking",
+        "description": "A tool for dynamic, step-by-step problem solving.",
+        "baseUrl": "https://mcp-thinking.railway.app/sse",
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "definition": {
+        "id": "time",
+        "name": "Time",
+        "description": "Provides time and timezone conversion tools.",
+        "baseUrl": "https://mcp-time-demo.herokuapp.com/sse",
+        "isEnabled": true
       }
     }
   ]
