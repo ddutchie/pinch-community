@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-19T21:00:03.825Z",
+  "updatedAt": "2026-02-19T21:04:55.301Z",
   "services": [
     {
       "author": "ddutchie",
@@ -149,25 +149,6 @@
         "requiredServices": [
           "hacker-news-v1"
         ],
-        "isEnabled": true,
-        "isBuiltIn": false
-      }
-    },
-    {
-      "author": "ddutchie",
-      "version": "1.0.0",
-      "description": "A test skill to verify the auto-generate manifest workflow.",
-      "tags": [
-        "test",
-        "debug"
-      ],
-      "definition": {
-        "id": "test-skill",
-        "name": "Test Workflow Skill",
-        "icon": "hammer.fill",
-        "colorHex": "8E8E93",
-        "prompt": "This is a test skill. Just say hello.",
-        "requiredServices": [],
         "isEnabled": true,
         "isBuiltIn": false
       }
