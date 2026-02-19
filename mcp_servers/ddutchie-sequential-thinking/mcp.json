@@ -4,7 +4,7 @@
         "id": "sequential-thinking",
         "name": "Sequential Thinking",
         "description": "A tool for dynamic, step-by-step problem solving.",
-        "baseUrl": "https://mcp-thinking.railway.app/sse",
+        "baseUrl": "https://remote.mcpservers.org/sequentialthinking/mcp",
         "isEnabled": true
     }
 }
