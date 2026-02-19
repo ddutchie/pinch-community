@@ -1,0 +1,10 @@
+{
+    "author": "ddutchie",
+    "definition": {
+        "id": "time",
+        "name": "Time",
+        "description": "Provides time and timezone conversion tools.",
+        "baseUrl": "https://mcp-time-demo.herokuapp.com/sse",
+        "isEnabled": true
+    }
+}

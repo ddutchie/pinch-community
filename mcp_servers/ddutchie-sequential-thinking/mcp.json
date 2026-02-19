@@ -1,0 +1,10 @@
+{
+    "author": "ddutchie",
+    "definition": {
+        "id": "sequential-thinking",
+        "name": "Sequential Thinking",
+        "description": "A tool for dynamic, step-by-step problem solving.",
+        "baseUrl": "https://mcp-thinking.railway.app/sse",
+        "isEnabled": true
+    }
+}
