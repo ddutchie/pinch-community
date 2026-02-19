@@ -1,0 +1,13 @@
+{
+    "author": "community",
+    "definition": {
+        "id": "fetch",
+        "name": "Fetch",
+        "description": "Fetches web content and converts to markdown.",
+        "baseUrl": "https://mcp-fetch-secure.fly.dev/sse",
+        "headers": {
+            "Authorization": "Bearer <API_KEY>"
+        },
+        "isEnabled": true
+    }
+}
