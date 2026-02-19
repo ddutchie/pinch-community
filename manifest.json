@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-19T21:04:55.301Z",
+  "updatedAt": "2026-02-19T21:54:46.178Z",
   "services": [
     {
       "author": "ddutchie",
@@ -158,12 +158,42 @@
     {
       "author": "ddutchie",
       "definition": {
+        "id": "coingecko",
+        "name": "CoinGecko",
+        "description": "Retrieve cryptocurrency data from CoinGecko.",
+        "baseUrl": "https://mcp.api.coingecko.com/sse",
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "definition": {
+        "id": "deepwiki",
+        "name": "DeepWiki",
+        "description": "Search and retrieve information from DeepWiki.",
+        "baseUrl": "https://mcp.deepwiki.com/sse",
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "definition": {
         "id": "fetch",
         "name": "Fetch",
         "description": "Fetches web content and converts to markdown.",
-        "baseUrl": "https://mcp-fetch-secure.fly.dev/sse",
+        "baseUrl": "https://remote.mcpservers.org/fetch/mcp",
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "definition": {
+        "id": "github-copilot",
+        "name": "GitHub Copilot",
+        "description": "GitHub Copilot MCP server (Requires OAUTH).",
+        "baseUrl": "https://api.githubcopilot.com/mcp/",
         "headers": {
-          "Authorization": "Bearer <API_KEY>"
+          "Authorization": "Bearer <TOKEN>"
         },
         "isEnabled": true
       }
@@ -174,7 +204,7 @@
         "id": "sequential-thinking",
         "name": "Sequential Thinking",
         "description": "A tool for dynamic, step-by-step problem solving.",
-        "baseUrl": "https://mcp-thinking.railway.app/sse",
+        "baseUrl": "https://remote.mcpservers.org/sequentialthinking/mcp",
         "isEnabled": true
       }
     },

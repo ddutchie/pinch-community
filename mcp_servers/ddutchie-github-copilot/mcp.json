@@ -1,0 +1,13 @@
+{
+    "author": "ddutchie",
+    "definition": {
+        "id": "github-copilot",
+        "name": "GitHub Copilot",
+        "description": "GitHub Copilot MCP server (Requires OAUTH).",
+        "baseUrl": "https://api.githubcopilot.com/mcp/",
+        "headers": {
+            "Authorization": "Bearer <TOKEN>"
+        },
+        "isEnabled": true
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "author": "ddutchie",
+    "definition": {
+        "id": "deepwiki",
+        "name": "DeepWiki",
+        "description": "Search and retrieve information from DeepWiki.",
+        "baseUrl": "https://mcp.deepwiki.com/sse",
+        "isEnabled": true
+    }
+}

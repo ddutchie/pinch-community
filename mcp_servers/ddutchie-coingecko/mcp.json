@@ -1,0 +1,10 @@
+{
+    "author": "ddutchie",
+    "definition": {
+        "id": "coingecko",
+        "name": "CoinGecko",
+        "description": "Retrieve cryptocurrency data from CoinGecko.",
+        "baseUrl": "https://mcp.api.coingecko.com/sse",
+        "isEnabled": true
+    }
+}
