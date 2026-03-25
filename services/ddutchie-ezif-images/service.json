@@ -1,0 +1,28 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "tags": [
+        "images",
+        "search",
+        "ezif"
+    ],
+    "definition": {
+        "id": "ezif-images",
+        "name": "Ezif Image Search",
+        "description": "Search for and pull image results using Ezif.",
+        "apiUrl": "https://se.ezif.in/image",
+        "method": "GET",
+        "headers": {
+            "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"searchImagesEzif\", \"description\": \"Search for images using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+            "results",
+            "title",
+            "url",
+            "snippet",
+            "image"
+        ],
+        "isEnabled": true
+    }
+}
