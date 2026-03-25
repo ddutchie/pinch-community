@@ -1,0 +1,28 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "tags": [
+        "news",
+        "search",
+        "ezif"
+    ],
+    "definition": {
+        "id": "ezif-news",
+        "name": "Ezif News Search",
+        "description": "Search for latest news results using Ezif.",
+        "apiUrl": "https://se.ezif.in/news",
+        "method": "GET",
+        "headers": {
+            "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"searchNewsEzif\", \"description\": \"Search for news using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+            "results",
+            "title",
+            "url",
+            "snippet",
+            "published"
+        ],
+        "isEnabled": true
+    }
+}

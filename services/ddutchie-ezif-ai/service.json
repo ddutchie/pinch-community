@@ -1,0 +1,21 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "tags": [
+        "ai",
+        "search",
+        "ezif"
+    ],
+    "definition": {
+        "id": "ezif-ai",
+        "name": "Ezif AI Search",
+        "description": "AI-powered search results using smart models like GPT-5.1 and LLaMA 3.1.",
+        "apiUrl": "https://se.ezif.in/ai",
+        "method": "GET",
+        "headers": {
+            "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"aiSearchEzif\", \"description\": \"Get AI-powered search results for a query\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "isEnabled": true
+    }
+}

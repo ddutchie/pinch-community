@@ -1,0 +1,28 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "tags": [
+        "videos",
+        "search",
+        "ezif"
+    ],
+    "definition": {
+        "id": "ezif-videos",
+        "name": "Ezif Video Search",
+        "description": "Search for and pull video results using Ezif.",
+        "apiUrl": "https://se.ezif.in/video",
+        "method": "GET",
+        "headers": {
+            "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"searchVideosEzif\", \"description\": \"Search for videos using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+            "results",
+            "title",
+            "url",
+            "snippet",
+            "video"
+        ],
+        "isEnabled": true
+    }
+}

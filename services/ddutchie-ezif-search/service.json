@@ -1,0 +1,27 @@
+{
+    "author": "ddutchie",
+    "version": "1.0.0",
+    "tags": [
+        "search",
+        "web",
+        "ezif"
+    ],
+    "definition": {
+        "id": "ezif-search",
+        "name": "Ezif Search",
+        "description": "Search web results using Ezif's fast and focused search engine.",
+        "apiUrl": "https://se.ezif.in/search",
+        "method": "GET",
+        "headers": {
+            "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"searchEzif\", \"description\": \"Search the web for results using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+            "results",
+            "title",
+            "url",
+            "snippet"
+        ],
+        "isEnabled": true
+    }
+}
