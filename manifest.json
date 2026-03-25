@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-02-19T21:54:46.178Z",
+  "updatedAt": "2026-03-25T12:24:09.191Z",
   "services": [
     {
       "author": "ddutchie",
@@ -29,6 +29,159 @@
           "description"
         ],
         "apiKeyUrl": "https://brave.com/search/api/",
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "tags": [
+        "ai",
+        "search",
+        "ezif"
+      ],
+      "definition": {
+        "id": "ezif-ai",
+        "name": "Ezif AI Search",
+        "description": "AI-powered search results using smart models like GPT-5.1 and LLaMA 3.1.",
+        "apiUrl": "https://se.ezif.in/ai",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"aiSearchEzif\", \"description\": \"Get AI-powered search results for a query\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "tags": [
+        "images",
+        "search",
+        "ezif"
+      ],
+      "definition": {
+        "id": "ezif-images",
+        "name": "Ezif Image Search",
+        "description": "Search for and pull image results using Ezif.",
+        "apiUrl": "https://se.ezif.in/image",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"searchImagesEzif\", \"description\": \"Search for images using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+          "results",
+          "title",
+          "url",
+          "snippet",
+          "image"
+        ],
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "tags": [
+        "news",
+        "search",
+        "ezif"
+      ],
+      "definition": {
+        "id": "ezif-news",
+        "name": "Ezif News Search",
+        "description": "Search for latest news results using Ezif.",
+        "apiUrl": "https://se.ezif.in/news",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"searchNewsEzif\", \"description\": \"Search for news using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+          "results",
+          "title",
+          "url",
+          "snippet",
+          "published"
+        ],
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "tags": [
+        "search",
+        "web",
+        "ezif"
+      ],
+      "definition": {
+        "id": "ezif-search",
+        "name": "Ezif Search",
+        "description": "Search web results using Ezif's fast and focused search engine.",
+        "apiUrl": "https://se.ezif.in/search",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"searchEzif\", \"description\": \"Search the web for results using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+          "results",
+          "title",
+          "url",
+          "snippet"
+        ],
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "tags": [
+        "videos",
+        "search",
+        "ezif"
+      ],
+      "definition": {
+        "id": "ezif-videos",
+        "name": "Ezif Video Search",
+        "description": "Search for and pull video results using Ezif.",
+        "apiUrl": "https://se.ezif.in/video",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"searchVideosEzif\", \"description\": \"Search for videos using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+          "results",
+          "title",
+          "url",
+          "snippet",
+          "video"
+        ],
+        "isEnabled": true
+      }
+    },
+    {
+      "author": "ddutchie",
+      "version": "1.0.0",
+      "tags": [
+        "web",
+        "scrape",
+        "ezif"
+      ],
+      "definition": {
+        "id": "ezif-web",
+        "name": "Ezif Web Scraper",
+        "description": "Scrape full websites and return clean markdown content.",
+        "apiUrl": "https://se.ezif.in/web",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "toolDefinition": "{\"name\": \"scrapeWebsiteEzif\", \"description\": \"Scrape a website for content using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"url\": { \"type\": \"string\", \"description\": \"The URL of the website to scrape\" } }, \"required\": [\"url\"] } }",
         "isEnabled": true
       }
     },
