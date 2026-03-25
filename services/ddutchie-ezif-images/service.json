@@ -1,6 +1,6 @@
 {
     "author": "ddutchie",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "tags": [
         "images",
         "search",
@@ -10,7 +10,7 @@
         "id": "ezif-images",
         "name": "Ezif Image Search",
         "description": "Search for and pull image results using Ezif.",
-        "apiUrl": "https://se.ezif.in/image",
+        "apiUrl": "https://se.ezif.in/images",
         "method": "GET",
         "headers": {
             "Accept": "application/json"

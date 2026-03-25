@@ -1,6 +1,6 @@
 {
     "author": "ddutchie",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "tags": [
         "videos",
         "search",
@@ -10,7 +10,7 @@
         "id": "ezif-videos",
         "name": "Ezif Video Search",
         "description": "Search for and pull video results using Ezif.",
-        "apiUrl": "https://se.ezif.in/video",
+        "apiUrl": "https://se.ezif.in/videos",
         "method": "GET",
         "headers": {
             "Accept": "application/json"
