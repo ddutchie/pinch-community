@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-25T12:33:52.559Z",
+  "updatedAt": "2026-03-26T13:48:47.413Z",
   "services": [
     {
       "author": "ddutchie",
@@ -34,7 +34,7 @@
     },
     {
       "author": "ddutchie",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "ai",
         "search",
@@ -50,12 +50,18 @@
           "Accept": "application/json"
         },
         "toolDefinition": "{\"name\": \"aiSearchEzif\", \"description\": \"Get AI-powered search results for a query\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+          "answer",
+          "sources",
+          "title",
+          "url"
+        ],
         "isEnabled": true
       }
     },
     {
       "author": "ddutchie",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "tags": [
         "images",
         "search",
@@ -75,15 +81,15 @@
           "results",
           "title",
           "url",
-          "snippet",
-          "image"
+          "image_url",
+          "source"
         ],
         "isEnabled": true
       }
     },
     {
       "author": "ddutchie",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "news",
         "search",
@@ -104,14 +110,15 @@
           "title",
           "url",
           "snippet",
-          "published"
+          "published",
+          "source"
         ],
         "isEnabled": true
       }
     },
     {
       "author": "ddutchie",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "search",
         "web",
@@ -138,7 +145,7 @@
     },
     {
       "author": "ddutchie",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "tags": [
         "videos",
         "search",
@@ -158,15 +165,16 @@
           "results",
           "title",
           "url",
-          "snippet",
-          "video"
+          "description",
+          "duration",
+          "published"
         ],
         "isEnabled": true
       }
     },
     {
       "author": "ddutchie",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "web",
         "scrape",
@@ -182,6 +190,10 @@
           "Accept": "application/json"
         },
         "toolDefinition": "{\"name\": \"scrapeWebsiteEzif\", \"description\": \"Scrape a website for content using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"url\": { \"type\": \"string\", \"description\": \"The URL of the website to scrape\" } }, \"required\": [\"url\"] } }",
+        "responseKeys": [
+          "markdown",
+          "content"
+        ],
         "isEnabled": true
       }
     },
