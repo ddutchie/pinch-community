@@ -1,6 +1,6 @@
 {
     "author": "ddutchie",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "tags": [
         "ai",
         "search",
@@ -16,6 +16,12 @@
             "Accept": "application/json"
         },
         "toolDefinition": "{\"name\": \"aiSearchEzif\", \"description\": \"Get AI-powered search results for a query\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+        "responseKeys": [
+            "answer",
+            "sources",
+            "title",
+            "url"
+        ],
         "isEnabled": true
     }
 }
