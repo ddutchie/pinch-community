@@ -58,20 +58,20 @@ Do **NOT** include actual API keys in the `service.json`. Instead, use placehold
 {
   "author": "github_username",
   "version": "1.0.0",
-  "tags": ["news", "tech", "api"],
+  "tags": ["search", "web", "api"],
   "definition": {
-    "id": "hacker-news-v1",
-    "name": "Hacker News",
-    "description": "Get the latest top stories from Hacker News.",
-    "apiUrl": "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty",
+    "id": "search-v1",
+    "name": "Search Service",
+    "description": "Search the web for the latest information and news.",
+    "apiUrl": "https://api.searchprovider.com/v2/search",
     "method": "GET",
     "headers": {
       "Content-Type": "application/json",
       "Authorization": "Bearer <API_KEY>"
     },
-    "toolDefinition": "{\"name\": \"getTopStories\", \"description\": \"Get IDs of the top 500 stories on Hacker News\", \"parameters\": { \"type\": \"object\", \"properties\": { \"limit\": { \"type\": \"integer\", \"description\": \"Number of stories to return\" } }, \"required\": [\"limit\"] } }",
-    "responseKeys": ["id", "title", "url"],
-    "apiKeyUrl": "https://api.hackernews.com/keys",
+    "toolDefinition": "{\"name\": \"searchWeb\", \"description\": \"Search the web for a query\", \"parameters\": { \"type\": \"object\", \"properties\": { \"q\": { \"type\": \"string\", \"description\": \"The search query\" } }, \"required\": [\"q\"] } }",
+    "responseKeys": ["results", "title", "url", "snippet"],
+    "apiKeyUrl": "https://api.searchprovider.com/keys",
     "isEnabled": true
   }
 }
@@ -87,24 +87,71 @@ The `toolDefinition` field in the JSON above must be a **stringified JSON object
 **Original Tool JSON Structure:**
 ```json
 {
-  "name": "getWeather",
-  "description": "Get the current weather for a location",
+  "name": "searchWeb",
+  "description": "Search the web for a query",
   "parameters": {
     "type": "object",
     "properties": {
-      "location": {
+      "q": {
         "type": "string",
-        "description": "City and state, e.g. San Francisco, CA"
-      },
-      "unit": {
-        "type": "string",
-        "enum": ["celsius", "fahrenheit"]
+        "description": "The search query"
       }
     },
-    "required": ["location"]
+    "required": ["q"]
   }
 }
 ```
+
+### 💡 Optimization: Reducing Token Usage
+
+When defining a service, it is highly recommended to use the `responseKeys` field to filter the API response. This reduces the number of tokens sent to the AI, lowering costs and improving reasoning speed by removing "noisy" data.
+
+**What to Filter:**
+- **Metadata Flags**: Keys like `success: true`, `status: "ok"`, or `api_version` are rarely needed by the AI.
+- **Echoed Queries**: Many APIs echo the input query in the response (e.g., `"query": "apple"`). Strip these out to avoid redundancy.
+- **Large Unused Fields**: If an image search returns `resolution`, `aspect_ratio`, and `color_palette` but your tool only needs the `image_url`, drop the rest.
+- **Suggestions**: If the API returns search suggestions alongside results, consider dropping them if the primary goal is just to get the top results.
+
+**Before & After Example:**
+
+*Raw API Response (Noisy):*
+```json
+{
+  "success": true,
+  "api": "SearchAPI v2.1",
+  "query": "apple",
+  "results": [
+    {
+      "title": "Apple Inc.",
+      "url": "https://apple.com",
+      "snippet": "...",
+      "resolution": "1920x1080",
+      "rank": 1
+    }
+  ]
+}
+```
+
+*Optimized `responseKeys`:*
+```json
+"responseKeys": ["results", "title", "url", "snippet"]
+```
+
+*Filtered Response (Clean):*
+```json
+{
+  "results": [
+    {
+      "title": "Apple Inc.",
+      "url": "https://apple.com",
+      "snippet": "..."
+    }
+  ]
+}
+```
+
+> [!TIP]
+> Always verify that your `responseKeys` exactly match the data keys in the API response (e.g., `image_url` vs `image`).
 
 ### Skill Schema (`skill.json`)
 
