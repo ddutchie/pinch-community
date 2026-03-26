@@ -1,6 +1,6 @@
 {
     "author": "ddutchie",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "tags": [
         "videos",
         "search",
@@ -20,8 +20,9 @@
             "results",
             "title",
             "url",
-            "snippet",
-            "video"
+            "description",
+            "duration",
+            "published"
         ],
         "isEnabled": true
     }

@@ -1,6 +1,6 @@
 {
     "author": "ddutchie",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "tags": [
         "web",
         "scrape",
@@ -16,6 +16,10 @@
             "Accept": "application/json"
         },
         "toolDefinition": "{\"name\": \"scrapeWebsiteEzif\", \"description\": \"Scrape a website for content using Ezif\", \"parameters\": { \"type\": \"object\", \"properties\": { \"url\": { \"type\": \"string\", \"description\": \"The URL of the website to scrape\" } }, \"required\": [\"url\"] } }",
+        "responseKeys": [
+            "markdown",
+            "content"
+        ],
         "isEnabled": true
     }
 }
