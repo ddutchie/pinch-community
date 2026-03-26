@@ -216,7 +216,7 @@ Just like services, use placeholders like `<API_KEY>` in your headers. Pinch wil
 For developers interested in how Pinch executes these services, here is the flow:
 
 ### Service Execution
-When the AI decides to call a tool (e.g., `getTopStories`):
+When the AI decides to call a tool (e.g., `searchWeb`):
 
 1.  **Tool Matching**: The app checks if the tool name matches any installed Custom Service.
 2.  **Request Construction**:
@@ -224,7 +224,7 @@ When the AI decides to call a tool (e.g., `getTopStories`):
     *   It injects any `headers` defined (including your API keys).
 3.  **Argument Mapping**:
     *   **GET Requests**: The tool arguments are automatically converted to **URL Query Parameters**.
-        *   *Example*: `getTopStories(limit: 5)` -> `.../topstories.json?limit=5`
+        *   *Example*: `searchWeb(q: "Pinch")` -> `.../search?q=Pinch`
     *   **POST/PUT Requests**: The tool arguments are sent as a **JSON Body**.
         *   *Example*: `createNote(text: "Hello")` -> Body: `{"text": "Hello"}`
 4.  **Response Handling**:
@@ -238,3 +238,32 @@ A "Skill" is essentially a pre-packaged prompt template.
 1.  **Installation**: When a user installs a skill, it is saved to their local `SkillsService`.
 2.  **Invocation**: When the user taps the skill, the app sends the `prompt` string to the AI Agent.
 3.  **Context**: The app automatically attaches context from the `requiredServices`. For example, if your skill requires `calendar`, the app will give the AI permission to read the user's calendar events to answer the prompt.
+
+## 🛠 Project Tools
+
+To help contributors maintain high-quality service definitions, we provide the following development utilities:
+
+### Service Optimization Script
+This script helps you test your API endpoint and identify which keys should be included in `responseKeys` to minimize token usage.
+
+**Usage:**
+```bash
+bun scripts/optimize_service.js <path-to-your-service.json> --apiKey YOUR_KEY [--fix]
+```
+
+**What it does:**
+1.  Loads your `service.json`.
+2.  Injects your API key and default parameters.
+3.  Makes a real API call.
+4.  Analyzes the response for "noisy" keys (like `success: true` or `api_version`).
+5.  **With `--fix`**: Automatically updates the `service.json` with the suggested `responseKeys`.
+6.  **Without `--fix`**: Suggests an optimized `responseKeys` array for you to copy-paste.
+
+**Example:**
+```bash
+# Analyze and show suggestions
+bun scripts/optimize_service.js services/search-v1/service.json --apiKey abc-123
+
+# Analyze and automatically apply fixes
+bun scripts/optimize_service.js services/search-v1/service.json --apiKey abc-123 --fix
+```
